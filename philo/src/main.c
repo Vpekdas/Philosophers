@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/04/27 17:24:55 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:51:10 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
+	printf("%d\n", overall_parsing_check(ac, av));
 	return (0);
 }

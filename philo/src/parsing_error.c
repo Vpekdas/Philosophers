@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/04/30 13:50:05 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/01 00:39:27 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,31 @@ static bool	is_arg_overflow_underflow(int ac, char **av)
 			arg++;
 		j += ft_skip_zero(str);
 		if (ft_strcmp(arg, str + j) != 0)
-			return (free(str), false);
+			return (free(str), true);
 		free(str);
 		j = 0;
 		i++;
 	}
-	return (true);
+	return (false);
 }
 
-bool	overall_parsing_check(int ac, char **av)
+int	overall_parsing_check(int ac, char **av)
 {
 	if (is_arg_only_pos_nb(ac, av) == false)
-		return (false);
-	if (is_arg_overflow_underflow(ac, av) == false)
-		return (false);
-	return (true);
+	{
+		ft_putstr_fd(RED"🤗Error: Only positive numbers are allowed.🤗\n" NC, 2);
+		return (ERROR);
+	}
+	if (is_arg_overflow_underflow(ac, av) == true)
+	{
+		ft_putstr_fd(RED"🚰Error: Please enter numbers within" NC, 2);
+		ft_putstr_fd(RED" the int range.🚰\n", 2);
+		return (ERROR);
+	}
+	if (ft_atoi(av[1]) > 200)
+	{
+		ft_putstr_fd(RED"🤔Error: Maximum of 200 philosophers allowed.🤔\n" NC, 2);
+		return (ERROR);
+	}
+	return (OK);
 }

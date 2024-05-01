@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/01 01:37:56 by inf1n1ty         ###   ########.fr       */
+/*   Created: 2024/05/01 00:41:30 by inf1n1ty          #+#    #+#             */
+/*   Updated: 2024/05/01 02:28:59 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	main(int ac, char **av)
+void	fill_info(int ac, char **av, t_philo *philo)
 {
-	t_philo	*philo;
+	int	i;
 
-	philo = NULL;
-	if (overall_parsing_check(ac, av) == ERROR)
-		return (ERROR);
-	philo = ft_calloc(ft_atoi(av[1]), sizeof(t_philo));
+	i = 0;
+	while (i < ft_atoi(av[1]))
+	{
+		philo->philo_nb = ft_atoi(av[1]);
+		philo->time_to_die = ft_atoi(av[2]);
+		philo->time_to_eat = ft_atoi(av[3]);
+		philo->time_to_sleep = ft_atoi(av[4]);
+		if (ac == 6)
+			philo->nb_to_eat = ft_atoi(av[5]);
+		else
+			philo->nb_to_eat = -1;
+		++i;
+	}
 }

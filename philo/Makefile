@@ -3,20 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
+#    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/24 04:45:01 by dtelnov           #+#    #+#              #
-#    Updated: 2024/04/27 17:24:41 by vopekdas         ###   ########.fr        #
+#    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
+#    Updated: 2024/05/01 00:41:09 by inf1n1ty         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+
 
 # ============================== PROJECT INFO ================================ #
 NAME			:= philo
 PROJECT_NAME	:= philo
 
 # =========================== COMPILER AND FLAGS ============================= #
-CC				:= cc
+CC				:= clang
 CFLAGS			:= -Wall -Wextra -Werror -g3 -O2 -fno-builtin -I includes/
+DEPFLAGS		:= -MMD -MP
 
 # ================================= ALIASES ================================== #
 SRCS_PATH = src/
@@ -68,14 +71,20 @@ WHITE_BG		:= \033[48;5;15m
 # ================================ SRC FILES ================================= #
 
 SRCS 			:=	$(addprefix $(SRCS_PATH), \
-					sleep.c\
-					utils.c\
-					main.c\
+					itoa.c \
+					main.c \
+					parsing_error.c \
+					sleep.c \
+					utils.c \
 )
 
 # ================================ OBJ FILES ================================= #
 
-OBJS = $(addprefix $(OBJS_PATH), $(notdir $(SRCS:.c=.o)))
+OBJS 			:=	$(addprefix $(OBJS_PATH), $(notdir $(SRCS:.c=.o)))
+
+# ================================ DEPS FILES ================================= #
+
+DEPS			:=	$(SRCS:$(SRCS_PATH)%.c=$(OBJS_PATH)%.d)
 
 # ============================= FORMATTING VARS ============================== #
 
@@ -157,9 +166,11 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@printf "[✨] $(BCYAN)[%2d/%2d]\t$(BWHITE)All files have been compiled ✔️$(NC)\n" $(FILE_COUNT) $(TOTAL)
 
+-include $(DEPS)
+
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
-	@mkdir -p $(OBJS_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	mkdir -p $(OBJS_PATH)
+	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 	@$(eval FILE_COUNT=$(shell echo $$(($(FILE_COUNT)+1))))
 	@$(eval PERCENT:=$(shell echo $$((100*$(FILE_COUNT)/$(TOTAL)))))
 #	================= calculate progress bar =================

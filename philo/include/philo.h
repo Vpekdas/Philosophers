@@ -6,7 +6,7 @@
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 00:44:04 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:04:28 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_program
 	t_philo			**philos;
 }					t_program;
 
-
 void	ft_putstr_fd(char *s, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	argc_error(int ac);
@@ -87,7 +86,7 @@ char	*ft_itoa(int n);
 int		overall_parsing_check(int ac, char **av);
 
 int		init_struct(char **av, t_philo **philos);
-int		create_thread(t_philo **philos, size_t philo_nb, void* routine);
+int		create_thread(t_philo **philos, size_t philo_nb, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:41:30 by inf1n1ty          #+#    #+#             */
-/*   Updated: 2024/05/02 00:48:04 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:05:25 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	init_struct(char **av, t_philo **philos)
 	return (OK);
 }
 
-int	create_thread(t_philo **philos, size_t philo_nb, void* routine)
+int	create_thread(t_philo **philos, size_t philo_nb, void *routine)
 {
 	size_t	i;
 
@@ -85,7 +85,7 @@ void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program)
 {
 	size_t	i;
 
-    i	= 0;
+	i = 0;
 	while (i < philo_nb)
 	{
 		philos[i]->r_fork = &program->forks[i];

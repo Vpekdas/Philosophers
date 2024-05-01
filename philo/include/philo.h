@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/01 01:33:02 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:35:30 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 # define PHILO_H
 
-# include <sys/time.h>
 # include <stddef.h>
-# include <stdio.h>
-# include <unistd.h>
+# include <stdint.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <stdio.h>
+
+# include <sys/time.h>
+
+# include <unistd.h>
+
 # include <pthread.h>
+
+# include <string.h>
 
 
 # define ERROR -1
@@ -55,6 +61,7 @@ int		overall_parsing_check(int ac, char **av);
 typedef struct s_philo
 {
 	pthread_t		thread;
+	size_t			philo_id;
 	size_t			philo_nb;
 	size_t			time_to_die;
 	size_t			time_to_eat;

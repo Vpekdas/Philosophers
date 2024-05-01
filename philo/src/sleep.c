@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:08:34 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/04/27 17:19:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:08:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	get_current_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NULL) == -1)
-		ft_putstr_fd("Error\n gettimeofday failed\n", 2);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 

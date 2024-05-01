@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:15:14 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/01 01:35:04 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:34:06 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <string.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -76,7 +77,7 @@ int	ft_strcmp(char *s1, char *s2)
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	if (nmemb == 0 || size == 0)
@@ -86,10 +87,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ptr = malloc(size * nmemb);
 	if (!ptr)
 		return (NULL);
-	while (i < nmemb * size)
-	{
-		((unsigned char *) ptr)[i] = '\0';
-		++i;
-	}
+	memset(ptr, '\0', nmemb * size);
 	return (ptr);
 }

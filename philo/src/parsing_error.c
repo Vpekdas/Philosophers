@@ -6,7 +6,7 @@
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/01 00:39:27 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:01:07 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static bool	is_arg_overflow_underflow(int ac, char **av)
 	j = 0;
 	while (i < ac)
 	{
+		if (ft_atoi(av[i]) == 0)
+			return (true);
 		str = ft_itoa(ft_atoi(av[i]));
 		arg = av[i];
 		if (*arg == '-' && str[j++] == '-')
@@ -88,7 +90,7 @@ int	overall_parsing_check(int ac, char **av)
 	if (is_arg_overflow_underflow(ac, av) == true)
 	{
 		ft_putstr_fd(RED"🚰Error: Please enter numbers within" NC, 2);
-		ft_putstr_fd(RED" the int range.🚰\n", 2);
+		ft_putstr_fd(RED" the int range, excluding 0.🚰\n", 2);
 		return (ERROR);
 	}
 	if (ft_atoi(av[1]) > 200)

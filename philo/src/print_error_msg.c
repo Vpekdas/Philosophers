@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_error_msg.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 00:45:26 by inf1n1ty         ###   ########.fr       */
+/*   Created: 2024/05/02 00:23:29 by inf1n1ty          #+#    #+#             */
+/*   Updated: 2024/05/02 00:34:24 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	main(int ac, char **av)
+
+void	argc_error(int ac)
 {
-	t_philo	**philos;
+	char	*argc;
 
-	philos = NULL;
-	if (ac == 5 || ac == 6)
-	{
-		if (overall_parsing_check(ac, av) == ERROR)
-			return (ERROR);
-		if (init_struct(av, philos) == ERROR_CALLOC)
-			return (ERROR);
-	}
-	else
-		argc_error(ac);
+	argc = ft_itoa(ac - 1);
+	ft_putstr_fd(RED"Error: Incorrect number of arguments", 2);
+	ft_putstr_fd("(", 2);
+	ft_putstr_fd(argc, 2);
+	ft_putstr_fd(")\n", 2);
+	ft_putstr_fd("Usage: ./philo number_of_philosophers | ", 2);
+	ft_putstr_fd("time_to_die | time_to_eat | ", 2);
+	ft_putstr_fd("time_to_sleep | ", 2);
+	ft_putstr_fd("[number_of_times_each_philosopher_must_eat\n"NC, 2);
+	free(argc);
 }
-
-// TODO: create proper function to free depending on error code.

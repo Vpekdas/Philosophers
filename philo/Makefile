@@ -6,7 +6,7 @@
 #    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/01 00:41:09 by inf1n1ty         ###   ########.fr        #
+#    Updated: 2024/05/02 00:47:42 by inf1n1ty         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,9 +71,11 @@ WHITE_BG		:= \033[48;5;15m
 # ================================ SRC FILES ================================= #
 
 SRCS 			:=	$(addprefix $(SRCS_PATH), \
+					init.c \
 					itoa.c \
 					main.c \
 					parsing_error.c \
+					print_error_msg.c \
 					sleep.c \
 					utils.c \
 )

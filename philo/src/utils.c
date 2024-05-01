@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:15:14 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/01 16:34:06 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/02 00:20:01 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ int	ft_strcmp(char *s1, char *s2)
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	i;
 
-	i = 0;
 	if (nmemb == 0 || size == 0)
 		return (malloc(1));
 	if (SIZE_MAX / nmemb < size)

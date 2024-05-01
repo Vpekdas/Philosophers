@@ -6,7 +6,7 @@
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:41:30 by inf1n1ty          #+#    #+#             */
-/*   Updated: 2024/05/02 01:05:25 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 01:07:22 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	create_forks(size_t philo_nb, t_program *program)
 	size_t	i;
 
 	i = 0;
-	program->forks = ft_calloc(philo_nb, sizeof(pthread_mutex_t));
+	program->forks = ft_calloc(philo_nb, sizeof(pthread_mutex_t *));
 	if (!program->forks)
 		return (ERROR_CALLOC);
 	while (i < philo_nb)

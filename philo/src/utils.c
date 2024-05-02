@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:15:14 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 00:20:01 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 14:44:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <string.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -32,7 +31,7 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, s, ft_strlen(s));
 }
 
-int	ft_atoi(const char *str)
+size_t	ft_atoi(const char *str)
 {
 	int	i;
 	int	sign;

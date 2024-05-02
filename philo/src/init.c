@@ -3,31 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 00:41:30 by inf1n1ty          #+#    #+#             */
-/*   Updated: 2024/05/02 01:07:22 by inf1n1ty         ###   ########.fr       */
+/*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/05/02 14:27:42 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	init_struct(char **av, t_philo **philos)
+t_philo	**init_philo_struct(char **av)
 {
-	int	i;
+	size_t	i;
+	t_philo	**philos;
 
 	i = 0;
+	philos = NULL;
 	philos = ft_calloc(ft_atoi(av[1]), sizeof(t_philo *));
 	if (!philos)
-		return (ERROR_CALLOC);
+		return (NULL);
 	while (i < ft_atoi(av[1]))
 	{
 		philos[i] = ft_calloc(1, sizeof(t_philo));
 		if (!philos[i])
-			return (ERROR_CALLOC);
+			return (NULL);
 		++i;
 	}
-	return (OK);
+	return (philos);
+}
+
+void	fill_time_and_philo(int ac, char **av, t_philo **philos, t_program *program)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_atoi(av[1]))
+	{
+		philos[i]->program = program;
+		philos[i]->philo_id = i + 1;
+		philos[i]->philo_nb = ft_atoi(av[1]);
+		philos[i]->time_to_die = ft_atoi(av[2]);
+		philos[i]->time_to_eat = ft_atoi(av[3]);
+		philos[i]->time_to_sleep = ft_atoi(av[4]);
+		if (ac == 6)
+			philos[i]->nb_to_eat = ft_atoi(av[5]);
+		else
+			philos[i]->nb_to_eat = -1;
+		++i;
+	}
 }
 
 int	create_thread(t_philo **philos, size_t philo_nb, void *routine)
@@ -49,7 +72,7 @@ int	create_forks(size_t philo_nb, t_program *program)
 	size_t	i;
 
 	i = 0;
-	program->forks = ft_calloc(philo_nb, sizeof(pthread_mutex_t *));
+	program->forks = ft_calloc(philo_nb, sizeof(pthread_mutex_t));
 	if (!program->forks)
 		return (ERROR_CALLOC);
 	while (i < philo_nb)
@@ -58,27 +81,9 @@ int	create_forks(size_t philo_nb, t_program *program)
 			return (ERROR_INIT_MUTEX);
 		++i;
 	}
+	if (pthread_mutex_init(&program->write_lock, NULL) != 0)
+		return (ERROR_INIT_MUTEX);
 	return (OK);
-}
-
-void	fill_time_and_philo(int ac, char **av, t_philo **philos)
-{
-	int	i;
-
-	i = 0;
-	while (i < ft_atoi(av[1]))
-	{
-		philos[i]->philo_id = i + 1;
-		philos[i]->philo_nb = ft_atoi(av[1]);
-		philos[i]->time_to_die = ft_atoi(av[2]);
-		philos[i]->time_to_eat = ft_atoi(av[3]);
-		philos[i]->time_to_sleep = ft_atoi(av[4]);
-		if (ac == 6)
-			philos[i]->nb_to_eat = ft_atoi(av[5]);
-		else
-			philos[i]->nb_to_eat = -1;
-		++i;
-	}
 }
 
 void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program)

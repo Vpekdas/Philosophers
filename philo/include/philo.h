@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 01:04:28 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:31:17 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define WHITE	"\033[0;37m"
 # define NC		"\033[0m"
 
+typedef struct s_program	t_program;
+
 typedef struct s_philo
 {
 	pthread_t		thread;
@@ -55,9 +57,10 @@ typedef struct s_philo
 	size_t			nb_to_eat;
 	size_t			meal_eaten;
 	size_t			last_meal_time;
+	size_t			start_time;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	*write_lock;
+	t_program		*program;
 }		t_philo;
 
 typedef struct s_program
@@ -68,25 +71,24 @@ typedef struct s_program
 	t_philo			**philos;
 }					t_program;
 
-void	ft_putstr_fd(char *s, int fd);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	argc_error(int ac);
-void	fill_time_and_philo(int ac, char **av, t_philo **philos);
-void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
-
 size_t	ft_strlen(const char *s);
-size_t	get_current_time(void);
-
-int		ft_usleep(size_t milliseconds);
-int		ft_atoi(const char *str);
+void	ft_putstr_fd(char *s, int fd);
+size_t	ft_atoi(const char *str);
 int		ft_strcmp(char *s1, char *s2);
-
+void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_itoa(int n);
-
+size_t	get_current_time(void);
 int		overall_parsing_check(int ac, char **av);
 
-int		init_struct(char **av, t_philo **philos);
+t_philo	**init_philo_struct(char **av);
+void	fill_time_and_philo(int ac, char **av, t_philo **philos,
+			t_program *program);
 int		create_thread(t_philo **philos, size_t philo_nb, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
+void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
+
+void	*routine(t_philo *philo);
+
+void	argc_error(int ac);
 
 #endif

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
+#    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/02 00:47:42 by inf1n1ty         ###   ########.fr        #
+#    Updated: 2024/05/02 13:44:49 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRCS 			:=	$(addprefix $(SRCS_PATH), \
 					main.c \
 					parsing_error.c \
 					print_error_msg.c \
+					routine.c \
 					sleep.c \
 					utils.c \
 )

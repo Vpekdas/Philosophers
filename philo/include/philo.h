@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 15:31:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:51:43 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@
 # define NC		"\033[0m"
 
 typedef struct s_program	t_program;
+
+enum	e_state
+{
+	SLEEPING,
+	EATING,
+	THINKING
+};
 
 typedef struct s_philo
 {
@@ -88,7 +95,9 @@ int		create_forks(size_t philo_nb, t_program *program);
 void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 
 void	*routine(t_philo *philo);
+void	print_message(enum e_state state, t_philo *philo);
 
 void	argc_error(int ac);
+
 
 #endif

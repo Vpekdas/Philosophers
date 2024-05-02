@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_msg.c                                  :+:      :+:    :+:   */
+/*   print_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:10:39 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:56:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <pthread.h>
+#include <stddef.h>
 
 void	argc_error(int ac)
 {
@@ -26,4 +28,21 @@ void	argc_error(int ac)
 	ft_putstr_fd("time_to_sleep | ", 2);
 	ft_putstr_fd("[number_of_times_each_philosopher_must_eat\n"NC, 2);
 	free(argc);
+}
+
+void	print_message(enum e_state state, t_philo *philo)
+{
+	size_t	start;
+	size_t	time_diff;
+
+	start = philo->start_time;
+	time_diff = get_current_time() - start;
+	pthread_mutex_lock(&philo->program->write_lock);
+	if (state == EATING)
+		printf("%zu %zu is eating\n", time_diff, philo->philo_id);
+	else if (state == SLEEPING)
+		printf("%zu %zu is sleeping\n", time_diff, philo->philo_id);
+	else if (state == THINKING)
+		printf("%zu %zu is thinking\n", time_diff, philo->philo_id);
+	pthread_mutex_unlock(&philo->program->write_lock);
 }

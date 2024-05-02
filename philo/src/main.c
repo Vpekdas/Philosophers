@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 14:28:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/03 00:26:03 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	size_t		philo_nb;
 
 	philos = NULL;
+	program = (t_program){0};
 	if (ac == 5 || ac == 6)
 	{
 		if (overall_parsing_check(ac, av) == ERROR)
@@ -26,14 +27,13 @@ int	main(int ac, char **av)
 		philos = init_philo_struct(av);
 		if (!philos)
 			return (ERROR_CALLOC);
-		program = (t_program){0};
 		program.philos = philos;
 		fill_time_and_philo(ac, av, philos, &program);
 		philo_nb = ft_atoi(av[1]);
 		if (create_forks(philo_nb, &program) == ERROR_INIT_MUTEX)
 			return (ERROR);
 		assign_forks(philos, philo_nb, &program);
-		if (create_thread(philos, philo_nb, routine) == ERROR_INIT_THREAD)
+		if (create_thread(philos, &program, routine, monitor) == ERROR_INIT_THREAD)
 			return (ERROR);
 		while (1)
 		{

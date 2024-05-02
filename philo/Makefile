@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
+#    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/02 15:46:30 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/05/03 00:04:04 by inf1n1ty         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SRCS 			:=	$(addprefix $(SRCS_PATH), \
 					init.c \
 					itoa.c \
 					main.c \
+					monitor.c \
 					parsing_error.c \
 					print_msg.c \
 					routine.c \

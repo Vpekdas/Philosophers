@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 14:27:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/03 00:26:53 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,19 @@ void	fill_time_and_philo(int ac, char **av, t_philo **philos, t_program *program
 	}
 }
 
-int	create_thread(t_philo **philos, size_t philo_nb, void *routine)
+int	create_thread(t_philo **philos, t_program *program, void *routine, void *monitor)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < philo_nb)
+	while (i < philos[0]->philo_nb)
 	{
 		if (pthread_create(&philos[i]->thread, NULL, routine, philos[i]) != 0)
 			return (ERROR_INIT_THREAD);
 		++i;
 	}
+	if (pthread_create(&program->thread, NULL, monitor, philos) != 0)
+		return (ERROR_INIT_THREAD);
 	return (OK);
 }
 
@@ -79,9 +81,13 @@ int	create_forks(size_t philo_nb, t_program *program)
 	{
 		if (pthread_mutex_init(&program->forks[i], NULL) != 0)
 			return (ERROR_INIT_MUTEX);
+		if (pthread_mutex_init(&program->philos[i]->meal_lock, NULL) != 0)
+			return (ERROR_INIT_MUTEX);
 		++i;
 	}
 	if (pthread_mutex_init(&program->write_lock, NULL) != 0)
+		return (ERROR_INIT_MUTEX);
+	if (pthread_mutex_init(&program->death_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	return (OK);
 }

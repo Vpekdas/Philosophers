@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 16:13:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/03 00:14:07 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@ void	print_message(enum e_state state, t_philo *philo)
 		printf(BLUE"%zu %zu is 💤sleeping💤\n"NC, time_diff, philo->philo_id);
 	else if (state == THINKING)
 		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, philo->philo_id);
+	else if (state == TAKEN_A_FORK)
+		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, philo->philo_id);
+	else if (state == TAKEN_A_FORK)
+		printf(PURPLE"%zu %zu has 💀died💀\n"NC, time_diff, philo->philo_id);
 	pthread_mutex_unlock(&philo->program->write_lock);
 }

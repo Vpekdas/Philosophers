@@ -6,13 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 15:56:26 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:13:45 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <pthread.h>
-#include <stddef.h>
 
 void	argc_error(int ac)
 {
@@ -39,10 +37,10 @@ void	print_message(enum e_state state, t_philo *philo)
 	time_diff = get_current_time() - start;
 	pthread_mutex_lock(&philo->program->write_lock);
 	if (state == EATING)
-		printf("%zu %zu is eating\n", time_diff, philo->philo_id);
+		printf(ORANGE"%zu %zu is 🍝eating🍝\n"NC, time_diff, philo->philo_id);
 	else if (state == SLEEPING)
-		printf("%zu %zu is sleeping\n", time_diff, philo->philo_id);
+		printf(BLUE"%zu %zu is 💤sleeping💤\n"NC, time_diff, philo->philo_id);
 	else if (state == THINKING)
-		printf("%zu %zu is thinking\n", time_diff, philo->philo_id);
+		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, philo->philo_id);
 	pthread_mutex_unlock(&philo->program->write_lock);
 }

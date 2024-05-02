@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 15:51:43 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:10:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ERROR_INIT_THREAD -4
 
 # define YELLOW "\033[0;33m"
+# define ORANGE "\033[38;5;208m"
 # define GREEN	"\033[0;32m"
 # define BLUE	"\033[0;34m"
 # define RED	"\033[0;31m"
@@ -51,6 +52,12 @@ enum	e_state
 	SLEEPING,
 	EATING,
 	THINKING
+};
+
+enum	e_fork
+{
+	LOCK,
+	UNLOCK,
 };
 
 typedef struct s_philo

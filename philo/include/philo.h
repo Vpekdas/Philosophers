@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 00:24:58 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:41:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ERROR_CALLOC -2
 # define ERROR_INIT_MUTEX -3
 # define ERROR_INIT_THREAD -4
+# define ERROR_SLEEP -5
 
 # define YELLOW "\033[0;33m"
 # define ORANGE "\033[38;5;208m"
@@ -65,7 +66,6 @@ enum	e_fork
 typedef struct s_philo
 {
 	pthread_t		thread;
-	bool			is_philo_dead;
 	size_t			philo_id;
 	size_t			philo_nb;
 	size_t			time_to_die;
@@ -77,15 +77,15 @@ typedef struct s_philo
 	size_t			start_time;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
-	pthread_mutex_t	meal_lock;
 	t_program		*program;
 }		t_philo;
 
 typedef struct s_program
 {
+	bool			is_philo_dead;
 	pthread_t		thread;
-	pthread_mutex_t	write_lock;
-	pthread_mutex_t	death_lock;
+	size_t			start;
+	pthread_mutex_t	global_lock;
 	pthread_mutex_t	*forks;
 	t_philo			**philos;
 }					t_program;
@@ -102,16 +102,15 @@ int		overall_parsing_check(int ac, char **av);
 t_philo	**init_philo_struct(char **av);
 void	fill_time_and_philo(int ac, char **av, t_philo **philos,
 			t_program *program);
-int		create_thread(t_philo **philos, t_program *program, void *routine, void *monitor);
+int		create_thread(t_philo **philos, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
 void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 
 void	*routine(t_philo *philo);
 void	print_message(enum e_state state, t_philo *philo);
-
+int		ft_usleep(size_t milliseconds);
 void	*monitor(t_program *program);
 
 void	argc_error(int ac);
-
 
 #endif

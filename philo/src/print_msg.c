@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 00:14:07 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:28:40 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	print_message(enum e_state state, t_philo *philo)
 	size_t	start;
 	size_t	time_diff;
 
-	start = philo->start_time;
+	start = philo->program->start;
 	time_diff = get_current_time() - start;
-	pthread_mutex_lock(&philo->program->write_lock);
+	pthread_mutex_lock(&philo->program->global_lock);
 	if (state == EATING)
 		printf(ORANGE"%zu %zu is 🍝eating🍝\n"NC, time_diff, philo->philo_id);
 	else if (state == SLEEPING)
@@ -46,5 +46,5 @@ void	print_message(enum e_state state, t_philo *philo)
 		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, philo->philo_id);
 	else if (state == TAKEN_A_FORK)
 		printf(PURPLE"%zu %zu has 💀died💀\n"NC, time_diff, philo->philo_id);
-	pthread_mutex_unlock(&philo->program->write_lock);
+	pthread_mutex_unlock(&philo->program->global_lock);
 }

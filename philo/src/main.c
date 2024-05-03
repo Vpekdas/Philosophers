@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 00:26:03 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:28:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 		if (create_forks(philo_nb, &program) == ERROR_INIT_MUTEX)
 			return (ERROR);
 		assign_forks(philos, philo_nb, &program);
-		if (create_thread(philos, &program, routine, monitor) == ERROR_INIT_THREAD)
+		if (create_thread(philos, routine) == ERROR_INIT_THREAD)
 			return (ERROR);
 		while (1)
 		{

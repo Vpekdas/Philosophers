@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:10:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:28:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,18 @@ int	overall_parsing_check(int ac, char **av)
 {
 	if (is_arg_only_pos_nb(ac, av) == false)
 	{
-		ft_putstr_fd(RED"🤗Error: Only positive numbers are allowed.🤗\n" NC, 2);
+		ft_putstr_fd(RED"🤗 Error: Only positive numbers are allowed.🤗\n" NC, 2);
 		return (ERROR);
 	}
 	if (is_arg_overflow_underflow(ac, av) == true)
 	{
-		ft_putstr_fd(RED"🚰Error: Please enter numbers within" NC, 2);
-		ft_putstr_fd(RED" the int range, excluding 0.🚰\n", 2);
+		ft_putstr_fd(RED"🚱 Error: Please enter numbers within" NC, 2);
+		ft_putstr_fd(RED" the int range, excluding 0.🚱\n", 2);
 		return (ERROR);
 	}
 	if (ft_atoi(av[1]) > 200)
 	{
-		ft_putstr_fd(RED"🤔Error: Maximum of 200 philosophers allowed.🤔\n" NC, 2);
+		ft_putstr_fd(RED"🤔 Error: Maximum of 200 philosophers allowed.🤔\n" NC, 2);
 		return (ERROR);
 	}
 	return (OK);

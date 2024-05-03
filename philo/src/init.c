@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 00:26:53 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:39:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	fill_time_and_philo(int ac, char **av, t_philo **philos, t_program *program
 	size_t	i;
 
 	i = 0;
+	program->start = get_current_time();
 	while (i < ft_atoi(av[1]))
 	{
 		philos[i]->program = program;
@@ -53,7 +54,7 @@ void	fill_time_and_philo(int ac, char **av, t_philo **philos, t_program *program
 	}
 }
 
-int	create_thread(t_philo **philos, t_program *program, void *routine, void *monitor)
+int	create_thread(t_philo **philos, void *routine)
 {
 	size_t	i;
 
@@ -64,8 +65,6 @@ int	create_thread(t_philo **philos, t_program *program, void *routine, void *mon
 			return (ERROR_INIT_THREAD);
 		++i;
 	}
-	if (pthread_create(&program->thread, NULL, monitor, philos) != 0)
-		return (ERROR_INIT_THREAD);
 	return (OK);
 }
 
@@ -81,13 +80,9 @@ int	create_forks(size_t philo_nb, t_program *program)
 	{
 		if (pthread_mutex_init(&program->forks[i], NULL) != 0)
 			return (ERROR_INIT_MUTEX);
-		if (pthread_mutex_init(&program->philos[i]->meal_lock, NULL) != 0)
-			return (ERROR_INIT_MUTEX);
 		++i;
 	}
-	if (pthread_mutex_init(&program->write_lock, NULL) != 0)
-		return (ERROR_INIT_MUTEX);
-	if (pthread_mutex_init(&program->death_lock, NULL) != 0)
+	if (pthread_mutex_init(&program->global_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	return (OK);
 }

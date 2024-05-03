@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 00:03:12 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:43:59 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,18 @@ void	eat_and_sleep(t_philo *philo)
 {
 	lock_unlock_fork(LOCK, philo);
 	print_message(EATING, philo);
-	usleep(philo->time_to_eat * 1000);
-	pthread_mutex_lock(&philo->meal_lock);
+	ft_usleep(philo->time_to_eat);
+	pthread_mutex_lock(&philo->program->global_lock);
 	philo->last_meal_time = get_current_time();
-	pthread_mutex_unlock(&philo->meal_lock);
+	pthread_mutex_unlock(&philo->program->global_lock);
 	lock_unlock_fork(UNLOCK, philo);
 	print_message(SLEEPING, philo);
-	usleep(philo->time_to_sleep * 1000);
+	ft_usleep(philo->time_to_sleep);
 }
 
 void	*routine(t_philo *philo)
 {
-	philo->start_time = get_current_time();
-	while (philo->is_philo_dead == false)
+	while (1)
 	{
 		eat_and_sleep(philo);
 		print_message(THINKING, philo);

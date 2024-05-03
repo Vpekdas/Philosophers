@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
+#    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/03 00:04:04 by inf1n1ty         ###   ########.fr        #
+#    Updated: 2024/05/03 17:31:48 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,6 @@ SRCS 			:=	$(addprefix $(SRCS_PATH), \
 					init.c \
 					itoa.c \
 					main.c \
-					monitor.c \
 					parsing_error.c \
 					print_msg.c \
 					routine.c \
@@ -166,7 +165,7 @@ $(NAME): $(OBJS)
 #	==== go back several characters and print percentage =====
 	@printf "\b\b\b\b\b$(A_BLACK)$(WHITE_BG)$(BOLD)%3d%%$(NC)\r" $(PERCENT)
 #	================= write rest of messages =================
-	@echo "\n\n\n[🔘] $(BGREEN)$(PROJECT_NAME) compiled !$(NC)\n"
+	@echo "\n\n\n[🔘] $(BGREEN)$(PROJECT_NAME) Ready to eat$(NC)\n"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@printf "[✨] $(BCYAN)[%2d/%2d]\t$(BWHITE)All files have been compiled ✔️$(NC)\n" $(FILE_COUNT) $(TOTAL)
 

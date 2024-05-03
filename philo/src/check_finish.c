@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   check_finish.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/27 17:08:34 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 17:44:25 by vopekdas         ###   ########.fr       */
+/*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
+/*   Updated: 2024/05/03 17:50:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-size_t	get_current_time(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-int	ft_usleep(size_t milliseconds)
+void	check_death(t_philo **philos, t_program *program)
 {
 	size_t	start;
+	size_t	i;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
-	return (0);
+	i = 0;
+	while (1)
+	{
+		while (i < philos[0]->philo_nb)
+		{
+			if (start - philos[i]->last_meal_time >= philos[i]->time_to_die)
+				program->is_philo_dead = true;
+			++i;
+		}
+		
+	}
 }

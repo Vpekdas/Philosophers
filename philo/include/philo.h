@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 18:48:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:47:49 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int		ft_usleep(size_t milliseconds);
 void	end_loop(t_philo **philos, t_program *program);
 
 void	argc_error(int ac);
+
+void	join_thread(t_philo **philos, size_t philo_nb);
 
 #endif

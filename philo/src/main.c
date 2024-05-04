@@ -6,7 +6,7 @@
 /*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 23:59:08 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:48:04 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	main(int ac, char **av)
 		if (create_thread(philos, routine) == ERROR_INIT_THREAD)
 			return (ERROR);
 		end_loop(philos, &program);
-		for (size_t i = 0; i < philo_nb; i++)
-			pthread_join(philos[i]->thread, NULL);
+		join_thread(philos, philo_nb);
 	}
 	else
 		argc_error(ac);

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 17:27:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:50:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	*routine(t_philo *philo)
 {
 	while (1)
 	{
+		if (philo->meal_eaten == philo->nb_to_eat)
+			break ;
 		eat_and_sleep(philo);
 		print_message(THINKING, philo);
 	}

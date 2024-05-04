@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 18:00:16 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:48:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ enum	e_state
 	EATING,
 	THINKING,
 	TAKEN_A_FORK,
-	DIED
+	DIED,
+	MEAL
 };
 
 enum	e_fork

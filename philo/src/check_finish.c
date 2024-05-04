@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 18:11:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 19:02:28 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ void	end_loop(t_philo **philos, t_program *program)
 	while (1)
 	{
 		if (check_if_enough_meals(philos) == true)
+		{
+			print_message(MEAL, NULL);
 			break ;
+		}
 		check_death(philos, program);
 		if (program->is_philo_dead != 0)
 		{

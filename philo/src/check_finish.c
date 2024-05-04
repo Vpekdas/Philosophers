@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 16:19:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:07:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ static bool	check_if_enough_meals(t_philo **philos)
 	i = 0;
 	while (i < philos[0]->philo_nb)
 	{
+		pthread_mutex_lock(&philos[i]->program->global_lock);
 		if (philos[i]->meal_eaten < philos[i]->nb_to_eat)
+		{
+			pthread_mutex_unlock(&philos[i]->program->global_lock);
 			return (false);
+		}
+		pthread_mutex_unlock(&philos[i]->program->global_lock);
 		++i;
 	}
 	return (true);

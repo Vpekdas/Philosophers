@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 16:28:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:11:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	overall_parsing_check(int ac, char **av)
 	}
 	if (ft_atoi(av[1]) > 200)
 	{
-		ft_putstr_fd(RED"🤔 Error: Maximum of 200 philosophers allowed.🤔\n" NC, 2);
+		ft_putstr_fd(RED"🤔 Error: Maximum of 200", 2);
+		ft_putstr_fd("philosophers allowed.🤔\n" NC, 2);
 		return (ERROR);
 	}
 	return (OK);

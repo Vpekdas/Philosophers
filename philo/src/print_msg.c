@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 17:28:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:18:52 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,21 @@ void	print_message(enum e_state state, t_philo *philo)
 {
 	size_t	start;
 	size_t	time_diff;
+	size_t	id;
 
 	start = philo->program->start;
 	time_diff = get_current_time() - start;
 	pthread_mutex_lock(&philo->program->global_lock);
+	id = philo->philo_id;
 	if (state == EATING)
-		printf(ORANGE"%zu %zu is 🍝eating🍝\n"NC, time_diff, philo->philo_id);
+		printf(ORANGE"%zu %zu is 🍝eating🍝\n"NC, time_diff, id);
 	else if (state == SLEEPING)
-		printf(BLUE"%zu %zu is 💤sleeping💤\n"NC, time_diff, philo->philo_id);
+		printf(BLUE"%zu %zu is 💤sleeping💤\n"NC, time_diff, id);
 	else if (state == THINKING)
-		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, philo->philo_id);
+		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, id);
 	else if (state == TAKEN_A_FORK)
-		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, philo->philo_id);
+		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, id);
 	else if (state == TAKEN_A_FORK)
-		printf(PURPLE"%zu %zu has 💀died💀\n"NC, time_diff, philo->philo_id);
+		printf(PURPLE"%zu %zu has 💀died💀\n"NC, time_diff, id);
 	pthread_mutex_unlock(&philo->program->global_lock);
 }

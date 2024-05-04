@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 15:55:29 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ size_t	get_current_time(void);
 int		overall_parsing_check(int ac, char **av);
 
 t_philo	**init_philo_struct(char **av);
-void	fill_time_and_philo(int ac, char **av, t_philo **philos,
+void	fill_parsing(int ac, char **av, t_philo **philos,
 			t_program *program);
 int		create_thread(t_philo **philos, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
@@ -109,8 +109,7 @@ void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 void	*routine(t_philo *philo);
 void	print_message(enum e_state state, t_philo *philo);
 int		ft_usleep(size_t milliseconds);
-void	check_death(t_philo **philos, t_program *program);
-bool	check_if_enough_meals(t_philo **philos);
+void	end_loop(t_philo **philos, t_program *program);
 
 void	argc_error(int ac);
 

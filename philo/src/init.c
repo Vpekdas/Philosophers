@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 16:39:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:12:13 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_philo	**init_philo_struct(char **av)
 	return (philos);
 }
 
-void	fill_time_and_philo(int ac, char **av, t_philo **philos, t_program *program)
+void	fill_parsing(int ac, char **av, t_philo **philos, t_program *program)
 {
 	size_t	i;
 

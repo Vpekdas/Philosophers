@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 16:03:28 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:48 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,14 @@ int	main(int ac, char **av)
 		if (!philos)
 			return (ERROR_CALLOC);
 		program.philos = philos;
-		fill_time_and_philo(ac, av, philos, &program);
+		fill_parsing(ac, av, philos, &program);
 		philo_nb = ft_atoi(av[1]);
 		if (create_forks(philo_nb, &program) == ERROR_INIT_MUTEX)
 			return (ERROR);
 		assign_forks(philos, philo_nb, &program);
 		if (create_thread(philos, routine) == ERROR_INIT_THREAD)
 			return (ERROR);
-		while (1)
-		{
-			if (check_if_enough_meals(philos) == true)
-			{
-				printf("MEALS\n");
-				break ;
-			}
-			check_death(philos, &program);
-			if (program.is_philo_dead == true)
-			{
-				printf("DIED\n");
-				break ;
-			}
-		}
+		end_loop(philos, &program);
 	}
 	else
 		argc_error(ac);

@@ -6,7 +6,7 @@
 #    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/03 17:31:48 by vopekdas         ###   ########.fr        #
+#    Updated: 2024/05/04 15:09:00 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ WHITE_BG		:= \033[48;5;15m
 # ================================ SRC FILES ================================= #
 
 SRCS 			:=	$(addprefix $(SRCS_PATH), \
+					check_finish.c \
 					init.c \
 					itoa.c \
 					main.c \
@@ -172,7 +173,7 @@ $(NAME): $(OBJS)
 -include $(DEPS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
-	mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 	@$(eval FILE_COUNT=$(shell echo $$(($(FILE_COUNT)+1))))
 	@$(eval PERCENT:=$(shell echo $$((100*$(FILE_COUNT)/$(TOTAL)))))

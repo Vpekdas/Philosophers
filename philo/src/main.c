@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/03 17:28:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:27:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ int	main(int ac, char **av)
 			return (ERROR);
 		while (1)
 		{
+			check_death(philos, &program);
+			if (program.is_philo_dead == true)
+				break ;
 		}
 	}
 	else
 		argc_error(ac);
 }
-
-// TODO: create proper function to free depending on error code.

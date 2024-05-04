@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 19:00:40 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:05:09 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	*routine(t_philo *philo)
 	while (1)
 	{
 		pthread_mutex_lock(&philo->program->global_lock);
-		if (philo->meal_eaten == philo->nb_to_eat
-			|| philo->program->is_philo_dead)
+		if (philo->program->is_philo_dead != 0
+			|| philo->meal_eaten >= philo->nb_to_eat)
 		{
 			pthread_mutex_unlock(&philo->program->global_lock);
 			break ;

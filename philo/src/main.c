@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 16:14:48 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:09:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <stddef.h>
 
 int	main(int ac, char **av)
 {

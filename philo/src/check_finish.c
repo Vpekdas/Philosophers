@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 17:56:42 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:11:32 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_death(t_philo **philos, t_program *program)
 	size_t	current;
 
 	i = 0;
-	ft_usleep(philos[0]->time_to_die);
+	ft_usleep(philos[0]->time_to_die + 10);
 	while (i < philos[0]->philo_nb)
 	{
 		pthread_mutex_lock(&program->global_lock);

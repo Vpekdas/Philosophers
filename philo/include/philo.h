@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 17:35:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:00:16 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ typedef struct s_philo
 
 typedef struct s_program
 {
-	size_t				is_philo_dead;
-	pthread_t		thread;
+	size_t			is_philo_dead;
 	size_t			start;
 	pthread_mutex_t	global_lock;
 	pthread_mutex_t	*forks;

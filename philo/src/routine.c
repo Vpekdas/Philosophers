@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 17:50:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:11:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
+static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 {
 	if (fork == LOCK)
 	{
@@ -38,14 +38,14 @@ void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 	}
 }
 
-void	eat_and_sleep(t_philo *philo)
+static void	eat_and_sleep(t_philo *philo)
 {
 	lock_unlock_fork(LOCK, philo);
 	print_message(EATING, philo);
-	ft_usleep(philo->time_to_eat);
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->program->global_lock);
+	ft_usleep(philo->time_to_eat);
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->global_lock);
@@ -56,6 +56,8 @@ void	eat_and_sleep(t_philo *philo)
 
 void	*routine(t_philo *philo)
 {
+	if (philo->philo_nb == 1)
+		ft_usleep(philo->time_to_die + 100);
 	while (1)
 	{
 		if (philo->meal_eaten == philo->nb_to_eat)

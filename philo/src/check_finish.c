@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 17:07:32 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:37:52 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	check_death(t_philo **philos, t_program *program)
 		current = get_current_time();
 		if (current - philos[i]->last_meal_time > philos[i]->time_to_die)
 		{
-			program->is_philo_dead = true;
+			program->is_philo_dead = philos[i]->philo_id;
 			pthread_mutex_unlock(&program->global_lock);
 			return ;
 		}
@@ -58,14 +58,11 @@ void	end_loop(t_philo **philos, t_program *program)
 	while (1)
 	{
 		if (check_if_enough_meals(philos) == true)
-		{
-			printf("MEALS\n");
 			break ;
-		}
 		check_death(philos, program);
-		if (program->is_philo_dead == true)
+		if (program->is_philo_dead != 0)
 		{
-			printf("DIED\n");
+			print_message(DIED, philos[program->is_philo_dead]);
 			break ;
 		}
 	}

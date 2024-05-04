@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 16:18:52 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:38:17 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_message(enum e_state state, t_philo *philo)
 		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, id);
 	else if (state == TAKEN_A_FORK)
 		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, id);
-	else if (state == TAKEN_A_FORK)
-		printf(PURPLE"%zu %zu has 💀died💀\n"NC, time_diff, id);
+	else if (state == DIED)
+		printf(PURPLE"%zu %zu 💀died💀\n"NC, time_diff, id);
 	pthread_mutex_unlock(&philo->program->global_lock);
 }

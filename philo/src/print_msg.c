@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 19:13:13 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:49:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void	print_message(enum e_state state, t_philo *philo)
 	time_diff = get_current_time() - start;
 	pthread_mutex_lock(&philo->program->global_lock);
 	id = philo->philo_id;
-	if (state == EATING)
-		printf(ORANGE"%zu %zu is 🍝eating🍝\n"NC, time_diff, id);
-	else if (state == SLEEPING)
-		printf(BLUE"%zu %zu is 💤sleeping💤\n"NC, time_diff, id);
-	else if (state == THINKING)
-		printf(WHITE"%zu %zu is 💭thinking💭\n"NC, time_diff, id);
-	else if (state == TAKEN_A_FORK)
-		printf(YELLOW"%zu %zu has taken a 🍴fork🍴\n"NC, time_diff, id);
+	if (state == EATING && philo->program->is_philo_dead == 0)
+		printf(ORANGE"%zu %zu is 🍝 eating 🍝\n"NC, time_diff, id);
+	else if (state == SLEEPING && philo->program->is_philo_dead == 0)
+		printf(BLUE"%zu %zu is 💤 sleeping 💤\n"NC, time_diff, id);
+	else if (state == THINKING && philo->program->is_philo_dead == 0)
+		printf(WHITE"%zu %zu is 💭 thinking 💭\n"NC, time_diff, id);
+	else if (state == TAKEN_A_FORK && philo->program->is_philo_dead == 0)
+		printf(YELLOW"%zu %zu has taken a 🍴 fork 🍴\n"NC, time_diff, id);
 	else if (state == DIED)
-		printf(PURPLE"%zu %zu 💀died💀\n"NC, time_diff, id);
+		printf(PURPLE"%zu %zu 💀 died 💀\n"NC, time_diff, id);
 	else if (state == MEAL)
-		printf(GREEN"%zu 🥣all philosophears eat🥣\n"NC, time_diff);
+		printf(GREEN"%zu 🥣 all philosophears eat 🥣 \n"NC, time_diff);
 	pthread_mutex_unlock(&philo->program->global_lock);
 }

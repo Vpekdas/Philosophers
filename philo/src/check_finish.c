@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_finish.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 00:11:56 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:31:00 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ static bool	check_if_enough_meals(t_philo **philos)
 	return (true);
 }
 
-static void	check_death(t_philo **philos, t_program *program)
+static int	check_death(t_philo **philos, t_program *program)
 {
 	size_t	i;
 	size_t	current;
 
 	i = 0;
-	ft_usleep(philos[0]->time_to_die + 10);
+	if (ft_usleep(philos[0]->time_to_die, program) == ERROR_SLEEP)
+		return (ERROR_SLEEP);
 	while (i < philos[0]->philo_nb)
 	{
 		pthread_mutex_lock(&program->global_lock);
@@ -46,18 +47,20 @@ static void	check_death(t_philo **philos, t_program *program)
 		{
 			program->is_philo_dead = philos[i]->philo_id;
 			pthread_mutex_unlock(&program->global_lock);
-			return ;
+			return (OK);
 		}
 		pthread_mutex_unlock(&program->global_lock);
 		++i;
 	}
+	return (OK);
 }
 
 void	end_loop(t_philo **philos, t_program *program)
 {
 	while (1)
 	{
-		check_death(philos, program);
+		if (check_death(philos, program) == ERROR_SLEEP)
+			return ;
 		if (program->is_philo_dead != 0 && !check_if_enough_meals(philos))
 		{
 			print_message(DIED, philos[program->is_philo_dead - 1]);

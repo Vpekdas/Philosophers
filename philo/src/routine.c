@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 00:05:09 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:35:44 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ static void	eat_and_sleep(t_philo *philo)
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->program->global_lock);
-	ft_usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo->program);
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->global_lock);
 	lock_unlock_fork(UNLOCK, philo);
 	print_message(SLEEPING, philo);
-	ft_usleep(philo->time_to_sleep);
+	ft_usleep(philo->time_to_sleep, philo->program);
 }
 
 void	*routine(t_philo *philo)
 {
 	if (philo->philo_nb == 1)
 	{
-		ft_usleep(philo->time_to_die);
+		ft_usleep(philo->time_to_die, philo->program);
 		return (NULL);
 	}
 	while (1)

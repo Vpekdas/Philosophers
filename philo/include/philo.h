@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 00:47:49 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:34:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,12 @@ void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 
 void	*routine(t_philo *philo);
 void	print_message(enum e_state state, t_philo *philo);
-int		ft_usleep(size_t milliseconds);
+int		ft_usleep(size_t milliseconds, t_program *program);
 void	end_loop(t_philo **philos, t_program *program);
 
 void	argc_error(int ac);
 
 void	join_thread(t_philo **philos, size_t philo_nb);
+int		free_struct(t_philo **philos, t_program *program);
 
 #endif

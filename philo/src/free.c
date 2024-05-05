@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 15:11:47 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:32:56 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:43:25 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@ void	join_thread(t_philo **philos, size_t philo_nb)
 	}
 }
 
-int	free_struct(t_philo **philos, t_program *program)
+static	void	free_philos(t_philo **philos, size_t philo_nb)
 {
 	size_t	i;
-	size_t	philo_nb;
 
 	i = 0;
-	philo_nb = philos[0]->philo_nb;
-	if (program->forks)
-	{
-		free(program->forks);
-		program->forks = NULL;
-	}
 	while (i < philo_nb)
 	{
 		if (philos[i])
@@ -51,5 +44,22 @@ int	free_struct(t_philo **philos, t_program *program)
 		free(philos);
 		philos = NULL;
 	}
+}
+
+int	free_struct(t_philo **philos, t_program *program)
+{
+	size_t	i;
+	size_t	philo_nb;
+
+	i = 0;
+	if (!philos)
+		return (OK);
+	philo_nb = philos[0]->philo_nb;
+	if (program->forks)
+	{
+		free(program->forks);
+		program->forks = NULL;
+	}
+	free_philos(philos, philo_nb);
 	return (OK);
 }

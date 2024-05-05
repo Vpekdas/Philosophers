@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:34:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/05 15:56:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,30 @@
 
 # define PHILO_H
 
+// valgrind --tool=helgrind --fair-sched=try => for verifying data race //
+// valgrind --leak-check=full => for verifying memory leaks //
+
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// LIBRARIES //	+	+	+	+	+	+	+ 	+ //
+// ---------------------------------------------------------------------------//
+
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
 
-# include <sys/time.h>
+# include <string.h>
 
 # include <unistd.h>
 
+# include <sys/time.h>
+
 # include <pthread.h>
 
-# include <string.h>
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// ERROR CODES //	+	+	+	+	+	+	+ //
+// ---------------------------------------------------------------------------//
 
 # define OK 0
 # define ERROR -1
@@ -34,6 +45,10 @@
 # define ERROR_INIT_MUTEX -3
 # define ERROR_INIT_THREAD -4
 # define ERROR_SLEEP -5
+
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// COLORS //	+	+	+	+	+	+	+ 	+ //
+// ---------------------------------------------------------------------------//
 
 # define YELLOW "\033[0;33m"
 # define ORANGE "\033[38;5;208m"
@@ -45,6 +60,10 @@
 # define BLACK	"\033[0;30"
 # define WHITE	"\033[0;37m"
 # define NC		"\033[0m"
+
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// ENUMERATIONS //	+	+	+	+	+	+	+ //
+// ---------------------------------------------------------------------------//
 
 typedef struct s_program	t_program;
 
@@ -63,6 +82,10 @@ enum	e_fork
 	LOCK,
 	UNLOCK,
 };
+
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// STRUCTURES //	+	+	+	+	+	+	+ //
+// ---------------------------------------------------------------------------//
 
 typedef struct s_philo
 {
@@ -90,15 +113,29 @@ typedef struct s_program
 	t_philo			**philos;
 }					t_program;
 
+// ---------------------------------------------------------------------------//
+//	+	+	+	+	+	+	+	// FUNCTIONS //	+	+	+	+	+	+	+ 	+ //
+// ---------------------------------------------------------------------------//
+
+//############################################################################//
+								// UTILS //
+//############################################################################//
 size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_atoi(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_itoa(int n);
-size_t	get_current_time(void);
-int		overall_parsing_check(int ac, char **av);
 
+//############################################################################//
+								// TIME //
+//############################################################################//
+size_t	get_current_time(void);
+int		ft_usleep(size_t milliseconds, t_program *program);
+
+//############################################################################//
+								// INIT //
+//############################################################################//
 t_philo	**init_philo_struct(char **av);
 void	fill_parsing(int ac, char **av, t_philo **philos,
 			t_program *program);
@@ -106,13 +143,22 @@ int		create_thread(t_philo **philos, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
 void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 
+//############################################################################//
+								// ROUTINE //
+//############################################################################//
 void	*routine(t_philo *philo);
-void	print_message(enum e_state state, t_philo *philo);
-int		ft_usleep(size_t milliseconds, t_program *program);
 void	end_loop(t_philo **philos, t_program *program);
 
+//############################################################################//
+								// ERROR MESSAGE //
+//############################################################################//
 void	argc_error(int ac);
+void	print_message(enum e_state state, t_philo *philo);
+int		overall_parsing_check(int ac, char **av);
 
+//############################################################################//
+								// FREE //
+//############################################################################//
 void	join_thread(t_philo **philos, size_t philo_nb);
 int		free_struct(t_philo **philos, t_program *program);
 

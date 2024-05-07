@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 17:33:05 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:31:00 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:44:38 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static int	check_death(t_philo **philos, t_program *program)
 	size_t	current;
 
 	i = 0;
-	if (ft_usleep(philos[0]->time_to_die, program) == ERROR_SLEEP)
-		return (ERROR_SLEEP);
+	ft_usleep(philos[0]->time_to_die, program);
 	while (i < philos[0]->philo_nb)
 	{
 		pthread_mutex_lock(&program->global_lock);
@@ -59,8 +58,7 @@ void	end_loop(t_philo **philos, t_program *program)
 {
 	while (1)
 	{
-		if (check_death(philos, program) == ERROR_SLEEP)
-			return ;
+		check_death(philos, program);
 		if (program->is_philo_dead != 0 && !check_if_enough_meals(philos))
 		{
 			print_message(DIED, philos[program->is_philo_dead - 1]);

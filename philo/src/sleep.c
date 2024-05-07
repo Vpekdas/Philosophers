@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:08:34 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:34:57 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:44:03 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <pthread.h>
 
 size_t	get_current_time(void)
 {

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 16:11:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:50:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static bool	is_arg_overflow_underflow(int ac, char **av)
 		if (ft_atoi(av[i]) == 0)
 			return (true);
 		str = ft_itoa(ft_atoi(av[i]));
+		if (!str)
+			return (true);
 		arg = av[i];
 		if (*arg == '-' && str[j++] == '-')
 			arg++;

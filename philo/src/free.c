@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 15:11:47 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:43:25 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:57:33 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static	void	free_philos(t_philo **philos, size_t philo_nb)
 	}
 }
 
-int	free_struct(t_philo **philos, t_program *program)
+int	free_struct(t_philo **philos, t_program *program, int error)
 {
 	size_t	i;
 	size_t	philo_nb;
 
 	i = 0;
 	if (!philos)
-		return (OK);
+		return (ERROR_CALLOC);
 	philo_nb = philos[0]->philo_nb;
 	if (program->forks)
 	{
@@ -61,5 +61,5 @@ int	free_struct(t_philo **philos, t_program *program)
 		program->forks = NULL;
 	}
 	free_philos(philos, philo_nb);
-	return (OK);
+	return (error);
 }

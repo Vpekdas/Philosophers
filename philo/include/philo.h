@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:56:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:56:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 # define ERROR_CALLOC -2
 # define ERROR_INIT_MUTEX -3
 # define ERROR_INIT_THREAD -4
-# define ERROR_SLEEP -5
 
 // ---------------------------------------------------------------------------//
 //	+	+	+	+	+	+	+	// COLORS //	+	+	+	+	+	+	+ 	+ //
@@ -141,7 +140,6 @@ void	fill_parsing(int ac, char **av, t_philo **philos,
 			t_program *program);
 int		create_thread(t_philo **philos, void *routine);
 int		create_forks(size_t philo_nb, t_program *program);
-void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program);
 
 //############################################################################//
 								// ROUTINE //
@@ -160,6 +158,6 @@ int		overall_parsing_check(int ac, char **av);
 								// FREE //
 //############################################################################//
 void	join_thread(t_philo **philos, size_t philo_nb);
-int		free_struct(t_philo **philos, t_program *program);
+int		free_struct(t_philo **philos, t_program *programm, int code);
 
 #endif

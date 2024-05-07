@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/04 18:26:17 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:49:02 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,19 @@ int	create_thread(t_philo **philos, void *routine)
 	return (OK);
 }
 
+static void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < philo_nb)
+	{
+		philos[i]->r_fork = &program->forks[i];
+		philos[i]->l_fork = &program->forks[(i + philo_nb - 1) % philo_nb];
+		++i;
+	}
+}
+
 int	create_forks(size_t philo_nb, t_program *program)
 {
 	size_t	i;
@@ -84,18 +97,7 @@ int	create_forks(size_t philo_nb, t_program *program)
 	}
 	if (pthread_mutex_init(&program->global_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
+	assign_forks(program->philos, philo_nb, program);
 	return (OK);
 }
 
-void	assign_forks(t_philo **philos, size_t philo_nb, t_program *program)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < philo_nb)
-	{
-		philos[i]->r_fork = &program->forks[i];
-		philos[i]->l_fork = &program->forks[(i + philo_nb - 1) % philo_nb];
-		++i;
-	}
-}

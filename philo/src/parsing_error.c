@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:20:38 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:50:41 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:58:07 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,29 @@ static bool	is_arg_only_pos_nb(int ac, char **av)
 
 static bool	is_arg_overflow_underflow(int ac, char **av)
 {
-	int		i;
-	int		j;
-	char	*str;
-	char	*arg;
+	t_overflow	over;
 
-	i = 1;
-	j = 0;
-	while (i < ac)
+	over = (t_overflow){0};
+	over.i = 1;
+	over.j = 0;
+	while (over.i < ac)
 	{
-		if (ft_atoi(av[i]) == 0)
+		if (ft_atoi(av[over.i]) == 0)
 			return (true);
-		str = ft_itoa(ft_atoi(av[i]));
-		if (!str)
+		over.str = ft_itoa(ft_atoi(av[over.i]));
+		if (!over.str)
 			return (true);
-		arg = av[i];
-		if (*arg == '-' && str[j++] == '-')
-			arg++;
-		while (*arg && *arg == '0' && ft_strlen(arg) > 1)
-			arg++;
-		j += ft_skip_zero(str);
-		if (ft_strcmp(arg, str + j) != 0)
-			return (free(str), true);
-		free(str);
-		j = 0;
-		i++;
+		over.arg = av[over.i];
+		if (*over.arg == '-' && over.str[over.j++] == '-')
+			over.arg++;
+		while (*over.arg && *over.arg == '0' && ft_strlen(over.arg) > 1)
+			over.arg++;
+		over.j += ft_skip_zero(over.str);
+		if (ft_strcmp(over.arg, over.str + over.j) != 0)
+			return (free(over.str), true);
+		free(over.str);
+		over.j = 0;
+		over.i++;
 	}
 	return (false);
 }
@@ -92,7 +90,7 @@ int	overall_parsing_check(int ac, char **av)
 	if (is_arg_overflow_underflow(ac, av) == true)
 	{
 		ft_putstr_fd(RED"🚱 Error: Please enter numbers within" NC, 2);
-		ft_putstr_fd(RED" the int range, excluding 0.🚱\n", 2);
+		ft_putstr_fd(RED" the size_t range, excluding 0.🚱\n", 2);
 		return (ERROR);
 	}
 	if (ft_atoi(av[1]) > 200)

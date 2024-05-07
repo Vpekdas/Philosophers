@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:49:02 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:54:18 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,3 @@ int	create_forks(size_t philo_nb, t_program *program)
 	assign_forks(program->philos, philo_nb, program);
 	return (OK);
 }
-

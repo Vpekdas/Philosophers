@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+         #
+#    By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/01 00:41:08 by inf1n1ty          #+#    #+#              #
-#    Updated: 2024/05/05 00:48:26 by inf1n1ty         ###   ########.fr        #
+#    Updated: 2024/05/08 13:52:29 by vopekdas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -175,7 +175,7 @@ $(NAME): $(OBJS)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)
-	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
 	@$(eval FILE_COUNT=$(shell echo $$(($(FILE_COUNT)+1))))
 	@$(eval PERCENT:=$(shell echo $$((100*$(FILE_COUNT)/$(TOTAL)))))
 #	================= calculate progress bar =================

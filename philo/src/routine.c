@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 15:35:44 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:06:42 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	eat_and_sleep(t_philo *philo)
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->program->global_lock);
-	ft_usleep(philo->time_to_eat, philo->program);
 	pthread_mutex_lock(&philo->program->global_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->global_lock);
+	ft_usleep(philo->time_to_eat, philo->program);
 	lock_unlock_fork(UNLOCK, philo);
 	print_message(SLEEPING, philo);
 	ft_usleep(philo->time_to_sleep, philo->program);

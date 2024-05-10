@@ -6,13 +6,13 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/07 13:54:18 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:32:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-t_philo	**init_philo_struct(char **av)
+t_philo	**init_philo_struct(char **av, t_program *program)
 {
 	size_t	i;
 	t_philo	**philos;
@@ -29,6 +29,7 @@ t_philo	**init_philo_struct(char **av)
 			return (NULL);
 		++i;
 	}
+	program->philos = philos;
 	return (philos);
 }
 

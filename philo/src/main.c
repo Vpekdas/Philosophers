@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:23:33 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/08 13:52:01 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:32:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	main(int ac, char **av)
 	{
 		if (overall_parsing_check(ac, av) == ERROR)
 			return (free_struct(philos, &program, ERROR));
-		philos = init_philo_struct(av);
+		philos = init_philo_struct(av, &program);
 		if (!philos)
 			return (free_struct(philos, &program, ERROR_CALLOC));
-		program.philos = philos;
 		fill_parsing(ac, av, philos, &program);
 		if (create_forks(philos[0]->philo_nb, &program) == ERROR_INIT_MUTEX)
 			return (free_struct(philos, &program, ERROR_INIT_MUTEX));

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/07 13:55:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:39:57 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int		ft_usleep(size_t milliseconds, t_program *program);
 //############################################################################//
 								// INIT //
 //############################################################################//
-t_philo	**init_philo_struct(char **av);
+t_philo	**init_philo_struct(char **av, t_program *program);
 void	fill_parsing(int ac, char **av, t_philo **philos,
 			t_program *program);
 int		create_thread(t_philo **philos, void *routine);

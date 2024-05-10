@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/05 14:49:33 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:42:58 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	argc_error(int ac)
 	ft_putstr_fd("(", 2);
 	ft_putstr_fd(argc, 2);
 	ft_putstr_fd(")\n", 2);
-	ft_putstr_fd("Usage: ./philo number_of_philosophers | ", 2);
-	ft_putstr_fd("time_to_die | time_to_eat | ", 2);
-	ft_putstr_fd("time_to_sleep | ", 2);
-	ft_putstr_fd("[number_of_times_each_philosopher_must_eat\n"NC, 2);
+	ft_putstr_fd("Usage: ./philo | ", 2);
+	ft_putstr_fd(RED"number_of_philosophers | ", 2);
+	ft_putstr_fd(BLUE"time_to_die | ", 2);
+	ft_putstr_fd(PURPLE"time_to_eat | ", 2);
+	ft_putstr_fd(CYAN"time_to_sleep | ", 2);
+	ft_putstr_fd(YELLOW"number_of_times_each_philosopher_must_eat\n"NC, 2);
 	free(argc);
 }
 

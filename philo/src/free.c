@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 15:11:47 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/07 13:59:45 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/11 02:04:36 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ static	void	free_philos(t_philo **philos, size_t philo_nb)
 
 int	free_struct(t_philo **philos, t_program *program, int error)
 {
-	size_t	i;
 	size_t	philo_nb;
 
-	i = 0;
 	if (!philos)
 		return (ERROR_CALLOC);
 	philo_nb = philos[0]->philo_nb;

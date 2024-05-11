@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/10 15:32:14 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/11 02:05:54 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ int	create_forks(size_t philo_nb, t_program *program)
 			return (ERROR_INIT_MUTEX);
 		++i;
 	}
-	if (pthread_mutex_init(&program->global_lock, NULL) != 0)
+	if (pthread_mutex_init(&program->print_lock, NULL) != 0)
+		return (ERROR_INIT_MUTEX);
+	if (pthread_mutex_init(&program->death_lock, NULL) != 0)
+		return (ERROR_INIT_MUTEX);
+	if (pthread_mutex_init(&program->meal_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	assign_forks(program->philos, philo_nb, program);
 	return (OK);

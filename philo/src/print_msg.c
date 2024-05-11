@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/10 15:42:58 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/11 02:06:59 by inf1n1ty         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_message(enum e_state state, t_philo *philo)
 
 	start = philo->program->start;
 	time_diff = get_current_time() - start;
-	pthread_mutex_lock(&philo->program->global_lock);
+	pthread_mutex_lock(&philo->program->print_lock);
 	id = philo->philo_id;
 	if (state == EATING && philo->program->is_philo_dead == 0)
 		printf(ORANGE"%zu %zu is 🍝 eating 🍝\n"NC, time_diff, id);
@@ -52,5 +52,5 @@ void	print_message(enum e_state state, t_philo *philo)
 		printf(PURPLE"%zu %zu 💀 died 💀\n"NC, time_diff, id);
 	else if (state == MEAL)
 		printf(GREEN"%zu 🥣 all philosophears eat 🥣 \n"NC, time_diff);
-	pthread_mutex_unlock(&philo->program->global_lock);
+	pthread_mutex_unlock(&philo->program->print_lock);
 }

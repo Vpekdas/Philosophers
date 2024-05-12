@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/12 16:31:21 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:03:09 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 			ft_usleep(1, philo->program, philo);
 			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
+			ft_usleep(1, philo->program, philo);
 			pthread_mutex_lock(philo->r_fork);
 			print_message(TAKEN_A_FORK, philo);
 		}

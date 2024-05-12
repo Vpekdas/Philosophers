@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 17:11:22 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/11 02:14:37 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:14:26 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct s_program
 {
 	size_t			is_philo_dead;
 	size_t			start;
-	pthread_mutex_t	print_lock;
 	pthread_mutex_t	death_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	*forks;

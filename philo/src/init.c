@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/11 02:05:54 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:14:23 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <pthread.h>
 
 t_philo	**init_philo_struct(char **av, t_program *program)
 {
@@ -96,8 +97,6 @@ int	create_forks(size_t philo_nb, t_program *program)
 			return (ERROR_INIT_MUTEX);
 		++i;
 	}
-	if (pthread_mutex_init(&program->print_lock, NULL) != 0)
-		return (ERROR_INIT_MUTEX);
 	if (pthread_mutex_init(&program->death_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	if (pthread_mutex_init(&program->meal_lock, NULL) != 0)

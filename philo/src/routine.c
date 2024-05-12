@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/12 15:05:11 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:31:21 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 		}
 		else
 		{	
+			ft_usleep(1, philo->program, philo);
 			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
 			pthread_mutex_lock(philo->r_fork);
@@ -51,6 +52,8 @@ static void	eat_and_sleep(t_philo *philo)
 	print_message(EATING, philo);
 	pthread_mutex_lock(&philo->program->meal_lock);
 	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&philo->program->meal_lock);
+	pthread_mutex_lock(&philo->program->meal_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->meal_lock);
 	ft_usleep(philo->time_to_eat, philo->program, philo);
@@ -74,10 +77,6 @@ void	*routine(t_philo *philo)
 		}
 		pthread_mutex_unlock(&philo->program->death_lock);
 		eat_and_sleep(philo);
-		if (philo->philo_nb >= 100)
-			ft_usleep(200, philo->program, philo);
-		else
-			ft_usleep(200, philo->program, philo);
 		print_message(THINKING, philo);
 	}
 	return (NULL);

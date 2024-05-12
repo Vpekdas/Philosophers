@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inf1n1ty <inf1n1ty@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/11 02:54:06 by inf1n1ty         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:05:11 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static	void *one_philo(t_philo *philo)
+static	void	*one_philo(t_philo *philo)
 {
 	print_message(TAKEN_A_FORK, philo);
 	ft_usleep(philo->time_to_die, philo->program, philo);
@@ -77,7 +77,7 @@ void	*routine(t_philo *philo)
 		if (philo->philo_nb >= 100)
 			ft_usleep(200, philo->program, philo);
 		else
-			ft_usleep(200 ,philo->program, philo);
+			ft_usleep(200, philo->program, philo);
 		print_message(THINKING, philo);
 	}
 	return (NULL);

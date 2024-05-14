@@ -6,11 +6,12 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/14 17:23:53 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:18:31 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <unistd.h>
 
 static	void	*one_philo(t_philo *philo)
 {
@@ -63,6 +64,10 @@ static void	eat_and_sleep(t_philo *philo)
 
 void	*routine(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->program->start_lock);
+	pthread_mutex_unlock(&philo->program->start_lock);
+	if (philo->philo_id % 2 != 0)
+		ft_usleep(philo->philo_nb, philo->program, philo);
 	if (philo->philo_nb == 1)
 		return (one_philo(philo));
 	while (1)
@@ -77,6 +82,7 @@ void	*routine(t_philo *philo)
 		pthread_mutex_unlock(&philo->program->death_lock);
 		eat_and_sleep(philo);
 		print_message(THINKING, philo);
+		ft_usleep(1, philo->program, philo);
 	}
 	return (NULL);
 }

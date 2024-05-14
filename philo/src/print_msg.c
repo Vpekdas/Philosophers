@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/14 17:13:54 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:25:41 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,14 @@ void	print_message(enum e_state state, t_philo *philo)
 	id = philo->philo_id;
 	pthread_mutex_lock(&philo->program->death_lock);
 	if (state == EATING && philo->program->is_philo_dead == 0)
-		printf(ORANGE"%zu %zu is 🍝 eating 🍝\n"NC, time_diff, id);
+		printf("%zu %zu is eating\n", time_diff, id);
 	else if (state == SLEEPING && philo->program->is_philo_dead == 0)
-		printf(BLUE"%zu %zu is 💤 sleeping 💤\n"NC, time_diff, id);
+		printf("%zu %zu is sleeping\n", time_diff, id);
 	else if (state == THINKING && philo->program->is_philo_dead == 0)
-		printf(WHITE"%zu %zu is 💭 thinking 💭\n"NC, time_diff, id);
+		printf("%zu %zu is thinking\n", time_diff, id);
 	else if (state == TAKEN_A_FORK && philo->program->is_philo_dead == 0)
-		printf(YELLOW"%zu %zu has taken a 🍴 fork 🍴\n"NC, time_diff, id);
+		printf("%zu %zu has taken a fork\n", time_diff, id);
 	else if (state == DIED)
-		printf(PURPLE"%zu %zu 💀 died 💀\n"NC, time_diff, id);
-	else if (state == MEAL)
-		printf(GREEN"%zu 🥣 all philosophears eat 🥣 \n"NC, time_diff);
+		printf("%zu %zu died\n", time_diff, id);
 	pthread_mutex_unlock(&philo->program->death_lock);
 }

@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:36 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/12 16:10:19 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:13:54 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	print_message(enum e_state state, t_philo *philo)
 
 	start = philo->program->start;
 	time_diff = get_current_time() - start;
-	pthread_mutex_lock(&philo->program->death_lock);
 	id = philo->philo_id;
+	pthread_mutex_lock(&philo->program->death_lock);
 	if (state == EATING && philo->program->is_philo_dead == 0)
 		printf(ORANGE"%zu %zu is 🍝 eating 🍝\n"NC, time_diff, id);
 	else if (state == SLEEPING && philo->program->is_philo_dead == 0)

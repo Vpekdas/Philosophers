@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:18 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/14 18:17:52 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:28:53 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <pthread.h>
 
 t_philo	**init_philo_struct(char **av, t_program *program)
 {
@@ -39,7 +38,6 @@ void	fill_parsing(int ac, char **av, t_philo **philos, t_program *program)
 	size_t	i;
 
 	i = 0;
-	program->start = get_current_time();
 	while (i < ft_atoi(av[1]))
 	{
 		philos[i]->program = program;
@@ -62,14 +60,13 @@ int	create_thread(t_philo **philos, void *routine)
 	size_t	i;
 
 	i = 0;
-	pthread_mutex_lock(&philos[0]->program->start_lock);
+	philos[0]->program->start = get_current_time();
 	while (i < philos[0]->philo_nb)
 	{
 		if (pthread_create(&philos[i]->thread, NULL, routine, philos[i]) != 0)
 			return (ERROR_INIT_THREAD);
 		++i;
 	}
-	pthread_mutex_unlock(&philos[0]->program->start_lock);
 	return (OK);
 }
 
@@ -103,8 +100,6 @@ int	create_forks(size_t philo_nb, t_program *program)
 	if (pthread_mutex_init(&program->death_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	if (pthread_mutex_init(&program->meal_lock, NULL) != 0)
-		return (ERROR_INIT_MUTEX);
-	if (pthread_mutex_init(&program->start_lock, NULL) != 0)
 		return (ERROR_INIT_MUTEX);
 	assign_forks(program->philos, philo_nb, program);
 	return (OK);

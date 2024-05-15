@@ -6,12 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/14 18:18:31 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:34:50 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-#include <unistd.h>
 
 static	void	*one_philo(t_philo *philo)
 {
@@ -33,8 +32,10 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 		}
 		else
 		{	
+			ft_usleep(1, philo->program, philo);
 			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
+			ft_usleep(1, philo->program, philo);
 			pthread_mutex_lock(philo->r_fork);
 			print_message(TAKEN_A_FORK, philo);
 		}
@@ -52,8 +53,6 @@ static void	eat_and_sleep(t_philo *philo)
 	print_message(EATING, philo);
 	pthread_mutex_lock(&philo->program->meal_lock);
 	philo->last_meal_time = get_current_time();
-	pthread_mutex_unlock(&philo->program->meal_lock);
-	pthread_mutex_lock(&philo->program->meal_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->meal_lock);
 	ft_usleep(philo->time_to_eat, philo->program, philo);
@@ -64,12 +63,10 @@ static void	eat_and_sleep(t_philo *philo)
 
 void	*routine(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->program->start_lock);
-	pthread_mutex_unlock(&philo->program->start_lock);
-	if (philo->philo_id % 2 != 0)
-		ft_usleep(philo->philo_nb, philo->program, philo);
 	if (philo->philo_nb == 1)
 		return (one_philo(philo));
+	if (philo->philo_id % 2 != 0)
+		ft_usleep(1, philo->program, philo);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->program->death_lock);
@@ -81,8 +78,8 @@ void	*routine(t_philo *philo)
 		}
 		pthread_mutex_unlock(&philo->program->death_lock);
 		eat_and_sleep(philo);
-		print_message(THINKING, philo);
 		ft_usleep(1, philo->program, philo);
+		print_message(THINKING, philo);
 	}
 	return (NULL);
 }

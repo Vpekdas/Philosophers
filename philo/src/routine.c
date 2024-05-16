@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/16 16:59:15 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:24:14 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*routine(t_philo *philo)
 {
 	if (philo->philo_nb == 1)
 		return (one_philo(philo));
-	if (philo->philo_id % 2 != 0)
+	if (philo->philo_id % 2 == 0)
 		ft_usleep(philo->time_to_eat / 2, philo->program, philo);
 	while (1)
 	{
@@ -78,6 +78,7 @@ void	*routine(t_philo *philo)
 		}
 		pthread_mutex_unlock(&philo->program->death_lock);
 		eat_and_sleep(philo);
+		ft_usleep(1, philo->program, philo);
 		print_message(THINKING, philo);
 	}
 	return (NULL);

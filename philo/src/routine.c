@@ -6,7 +6,7 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/16 15:42:49 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:59:15 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 {
 	if (fork == LOCK)
 	{
-		if (philo->philo_id % 2 == 0)
+		if (philo->philo_id == 1)
 		{
-			pthread_mutex_lock(philo->l_fork);
-			print_message(TAKEN_A_FORK, philo);
 			pthread_mutex_lock(philo->r_fork);
+			print_message(TAKEN_A_FORK, philo);
+			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
 		}
 		else
-		{	
+		{
 			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
 			pthread_mutex_lock(philo->r_fork);
@@ -40,8 +40,8 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 	}
 	else if (fork == UNLOCK)
 	{
-		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
+		pthread_mutex_unlock(philo->l_fork);
 	}
 }
 

@@ -6,17 +6,11 @@
 /*   By: vopekdas <vopekdas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:10:48 by vopekdas          #+#    #+#             */
-/*   Updated: 2024/05/16 01:49:09 by vopekdas         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:42:49 by vopekdas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-static	void	sleep_if_many_philo(t_philo *philo)
-{
-	if (philo->philo_nb < 31)
-		ft_usleep(1, philo->program, philo);
-}
 
 static	void	*one_philo(t_philo *philo)
 {
@@ -31,25 +25,23 @@ static void	lock_unlock_fork(enum e_fork fork, t_philo *philo)
 	{
 		if (philo->philo_id % 2 == 0)
 		{
-			pthread_mutex_lock(philo->r_fork);
-			print_message(TAKEN_A_FORK, philo);
 			pthread_mutex_lock(philo->l_fork);
+			print_message(TAKEN_A_FORK, philo);
+			pthread_mutex_lock(philo->r_fork);
 			print_message(TAKEN_A_FORK, philo);
 		}
 		else
 		{	
-			sleep_if_many_philo(philo);
 			pthread_mutex_lock(philo->l_fork);
 			print_message(TAKEN_A_FORK, philo);
-			sleep_if_many_philo(philo);
 			pthread_mutex_lock(philo->r_fork);
 			print_message(TAKEN_A_FORK, philo);
 		}
 	}
 	else if (fork == UNLOCK)
 	{
-		pthread_mutex_unlock(philo->r_fork);
 		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
 	}
 }
 
@@ -58,10 +50,12 @@ static void	eat_and_sleep(t_philo *philo)
 	lock_unlock_fork(LOCK, philo);
 	print_message(EATING, philo);
 	pthread_mutex_lock(&philo->program->meal_lock);
-	philo->last_meal_time = get_current_time();
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->meal_lock);
 	ft_usleep(philo->time_to_eat, philo->program, philo);
+	pthread_mutex_lock(&philo->program->death_lock);
+	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(&philo->program->death_lock);
 	lock_unlock_fork(UNLOCK, philo);
 	print_message(SLEEPING, philo);
 	ft_usleep(philo->time_to_sleep, philo->program, philo);
@@ -71,6 +65,8 @@ void	*routine(t_philo *philo)
 {
 	if (philo->philo_nb == 1)
 		return (one_philo(philo));
+	if (philo->philo_id % 2 != 0)
+		ft_usleep(philo->time_to_eat / 2, philo->program, philo);
 	while (1)
 	{
 		pthread_mutex_lock(&philo->program->death_lock);

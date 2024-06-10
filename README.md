@@ -67,7 +67,7 @@ This command will create an executable named `philo`.
 The first thing I did was to research more about this problem. I came across many solutions using different approaches (such as Dijkstra's solution and the Resource Hierarchy solution). These seemed a bit complicated, but I was advised by many students that it wasn't necessary to code such a sophisticated approach for this project.
 
 ### Understanding how thread and mutex function works:
-As usual, I turned to [CodeVault](https://www.youtube.com/@CodeVault) for guidance. The explanations provided on how threads work, what a data race is, and how to avoid them were very clear! I also want to thank [Uilly93](https://github.com/Uilly93) for explaining his approach to me, which saved me a lot of time (especially after receiving a zero score in three peer-to-peer corrections).
+As usual, I turned to [CodeVault](https://www.youtube.com/@CodeVault) for guidance. The explanations provided on how threads work, what a data race is, and how to avoid them were very clear! I also want to thank [Uilly93](https://github.com/Uilly93) for explaining his approach to me, which saved me a lot of time.
 
 ### Choosing a structure:
 I decided to create a structure because I knew I would need to store a lot of information. Here's an example of the structure that I used:

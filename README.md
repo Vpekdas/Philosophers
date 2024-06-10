@@ -13,13 +13,13 @@
 
 ## Description
 
-
+This project, "Philosophers", is an implementation of the classic concurrency problem known as the Dining Philosophers problem. It's written in C and uses multithreading and mutex functions to simulate the actions of philosophers as they alternate between eating and thinking. The goal of the project is to avoid deadlock and ensure fairness, so that each philosopher gets a fair chance to eat and think. This project serves as a practical exercise in understanding and applying the concepts of multithreading and synchronization.
 
 ## Installation Instructions
 
 Before you begin, ensure you have met the following requirements:
 
-1. **Download the library**: You can clone the library from GitHub using the following command in your terminal:
+1. **Download the project**: You can clone the project from GitHub using the following command in your terminal:
 ```bash
 git clone https://github.com/Vpekdas/Philosophers.git
 ```
@@ -37,18 +37,13 @@ sudo apt install clang
 
 Follow these steps to use the Philosophers project:
 
-1. **Clone the Repository:** Clone this repository to your local machine by running the following command in your terminal:
-```bash
-git clone https://github.com/Vpekdas/Philosophers.git
-```
-
-2. **Compile the Project:** Navigate to the cloned repository and compile the project using the provided Makefile. Execute the following command in your terminal:
+1. **Compile the Project:** Navigate to the cloned repository and compile the project using the provided Makefile. Execute the following command in your terminal:
 ```bash
 make
 ```
 This command will create an executable named `philo`.
 
-3. **Run the Program:** The `philo`program accepts 4 or 5 arguments: 
+2. **Run the Program:** The `philo`program accepts 4 or 5 arguments: 
 
    - Number of philosophers (limited to 200)
    - Time to die
@@ -61,7 +56,7 @@ This command will create an executable named `philo`.
 ./philo 5 800 200 200
 ```
 
-4. **Specify a Meal Count:** If you want to end the simulation after a certain number of meals, provide a fifth argument for the meal count. For example, to end the simulation after 7 meals, use the following command:
+3. **Specify a Meal Count:** If you want to end the simulation after a certain number of meals, provide a fifth argument for the meal count. For example, to end the simulation after 7 meals, use the following command:
 ```bash
 ./philo 5 800 200 200 7
 ```

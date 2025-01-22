@@ -54,3 +54,4 @@ void	print_message(enum e_state state, t_philo *philo)
 		printf(GREEN"%zu 🥣 all philosophears ate 🥣 \n"NC, time_diff);
 	pthread_mutex_unlock(&philo->program->death_lock);
 }
+

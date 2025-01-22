@@ -52,10 +52,10 @@ static void	eat_and_sleep(t_philo *philo)
 	pthread_mutex_lock(&philo->program->meal_lock);
 	philo->meal_eaten++;
 	pthread_mutex_unlock(&philo->program->meal_lock);
-	ft_usleep(philo->time_to_eat, philo->program, philo);
 	pthread_mutex_lock(&philo->program->death_lock);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(&philo->program->death_lock);
+	ft_usleep(philo->time_to_eat, philo->program, philo);
 	lock_unlock_fork(UNLOCK, philo);
 	print_message(SLEEPING, philo);
 	ft_usleep(philo->time_to_sleep, philo->program, philo);
@@ -78,7 +78,13 @@ void	*routine(t_philo *philo)
 		}
 		pthread_mutex_unlock(&philo->program->death_lock);
 		eat_and_sleep(philo);
+        if (philo->time_to_eat > philo->time_to_sleep) {
+		    ft_usleep((philo->time_to_eat - philo->time_to_sleep) * 2, philo->program, philo);
+        }
+        else {
 		ft_usleep(1, philo->program, philo);
+
+        }
 		print_message(THINKING, philo);
 	}
 	return (NULL);
